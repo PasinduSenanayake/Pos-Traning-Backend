@@ -38,16 +38,18 @@ public class JwtAuthTokenFilter extends OncePerRequestFilter {
         try {
 
             String jwt = getJwt(request);
-            if (jwt!=null && tokenProvider.validateJwtToken(jwt)) {
-                String username = tokenProvider.getUserNameFromJwtToken(jwt);
+            if (jwt != null && !jwt.equals("")){
+                if (tokenProvider.validateJwtToken(jwt)) {
+                    String username = tokenProvider.getUserNameFromJwtToken(jwt);
 
-                UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-                UsernamePasswordAuthenticationToken authentication
-                        = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+                    UsernamePasswordAuthenticationToken authentication
+                            = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
-                SecurityContextHolder.getContext().setAuthentication(authentication);
-            }
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                }
+        }
         } catch (Exception e) {
             logger.error("Can NOT set user authentication -> Message: {}", e);
         }
@@ -66,11 +68,17 @@ public class JwtAuthTokenFilter extends OncePerRequestFilter {
 //    }
 
     private String getJwt(HttpServletRequest request) {
-        String authHeader = Arrays.stream(request.getCookies())
-                .filter(c -> c.getName().equals("posAuthCookie"))
-                .findFirst()
-                .map(Cookie::getValue)
-                .orElse(null);
+        String authHeader = null;
+
+        if(request.getCookies().length>0){
+            authHeader = Arrays.stream(request.getCookies())
+                    .filter(c -> c.getName().equals("posAuthCookie"))
+                    .findFirst()
+                    .map(Cookie::getValue)
+                    .orElse(null);
+        }
+
+
 
 
         return authHeader;

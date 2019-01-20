@@ -58,4 +58,14 @@ public class AuthController {
         return ResponseEntity.ok("Authentication Successful");
     }
 
+
+    @PostMapping("/signOut")
+    @ResponseBody
+    public ResponseEntity<?> signOutUser( HttpServletResponse response) {
+        Cookie authCookie = new Cookie("posAuthCookie", null);
+        authCookie.setHttpOnly(true);
+        authCookie.setPath("/api");
+        response.addCookie(authCookie);
+        return ResponseEntity.ok("SignOut Successful");
+    }
 }
