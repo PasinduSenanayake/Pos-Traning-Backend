@@ -1,15 +1,20 @@
 package com.training.posproject;
 
+import com.training.posproject.Model.Item;
 import com.training.posproject.Model.Role;
 import com.training.posproject.Model.User;
+import com.training.posproject.Repository.ItemRepository;
 import com.training.posproject.Repository.UserRepository;
+import jdk.nashorn.internal.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.io.FileReader;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,6 +23,9 @@ public class PosprojectApplication implements CommandLineRunner {
 
     @Autowired
     private UserRepository repository;
+    
+    @Autowired
+    private ItemRepository itemRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -51,6 +59,7 @@ public class PosprojectApplication implements CommandLineRunner {
         System.out.println("User found with findByUsername('testU123'):");
         System.out.println("--------------------------------");
         System.out.println(repository.findByUsername("testU123"));
+
 
     }
 

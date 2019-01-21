@@ -1,5 +1,7 @@
 package com.training.posproject.Controllers;
 
+import com.training.posproject.Model.Item;
+import com.training.posproject.Repository.ItemRepository;
 import com.training.posproject.Repository.UserRepository;
 import com.training.posproject.Security.JWT.JwtProvider;
 import com.training.posproject.Security.Message.Request.LoginForm;
@@ -26,6 +28,9 @@ public class AuthController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    ItemRepository itemRepository;
 
 
     @Autowired
@@ -68,4 +73,12 @@ public class AuthController {
         response.addCookie(authCookie);
         return ResponseEntity.ok("SignOut Successful");
     }
+
+//    @PostMapping("/addItems")
+//    @ResponseBody
+//    public ResponseEntity<?> addItems(@Valid @RequestBody Item item, HttpServletResponse response) {
+//        itemRepository.save(item);
+//        return ResponseEntity.ok("SignOut Successful");
+//
+//    }
 }
