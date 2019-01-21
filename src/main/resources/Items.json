@@ -1,0 +1,182 @@
+[
+  {
+    "_id": {
+      "$oid": "5c45a5433068475835b0e17e"
+    },
+    "code": "App9876181",
+    "name": "Appleheads",
+    "unitPrice": 40.0,
+    "_class": "com.training.posproject.Model.Item"
+  },
+  {
+    "_id": {
+      "$oid": "5c45a5df3068475916a00879"
+    },
+    "code": "Atc6241481",
+    "name": "Atomic Fire Balls",
+    "unitPrice": 20.0,
+    "_class": "com.training.posproject.Model.Item"
+  },
+  {
+    "_id": {
+      "$oid": "5c45a6033068475916a0087a"
+    },
+    "code": "Blo3052683",
+    "name": "Blow Pops",
+    "unitPrice": 60.0,
+    "_class": "com.training.posproject.Model.Item"
+  },
+  {
+    "_id": {
+      "$oid": "5c45a6103068475916a0087b"
+    },
+    "code": "Bos5446834",
+    "name": "Boston Baked Beans",
+    "unitPrice": 70.0,
+    "_class": "com.training.posproject.Model.Item"
+  },
+  {
+    "_id": {
+      "$oid": "5c45a6233068475916a0087c"
+    },
+    "code": "Bot6515123",
+    "name": "Bottle Caps",
+    "unitPrice": 50.0,
+    "_class": "com.training.posproject.Model.Item"
+  }
+  {
+    "_id": {
+      "$oid": "5c45a6313068475916a0087d"
+    },
+    "code": "Bub9511146",
+    "name": "Bubble Gum Cigars",
+    "unitPrice": 80.0,
+    "_class": "com.training.posproject.Model.Item"
+  },
+  {
+    "_id": {
+      "$oid": "5c45a63d3068475916a0087e"
+    },
+    "code": "But0756237",
+    "name": "Butterscotch Disks",
+    "unitPrice": 90.0,
+    "_class": "com.training.posproject.Model.Item"
+  },
+  {
+    "_id": {
+      "$oid": "5c45a64a3068475916a0087f"
+    },
+    "code": "Can1874924",
+    "name": "Candy Button",
+    "unitPrice": 140.0,
+    "_class": "com.training.posproject.Model.Item"
+  },
+  {
+    "_id": {
+      "$oid": "5c45a6523068475916a00880"
+    },
+    "code": "Can6490049",
+    "name": "Candy Necklace",
+    "unitPrice": 120.0,
+    "_class": "com.training.posproject.Model.Item"
+  },
+  {
+    "_id": {
+      "$oid": "5c45a65f3068475916a00881"
+    },
+    "code": "Cha6178799",
+    "name": "Charleston Chew",
+    "unitPrice": 95.0,
+    "_class": "com.training.posproject.Model.Item"
+  },
+  {
+    "_id": {
+      "$oid": "5c45a6693068475916a00882"
+    },
+    "code": "Cha5710934",
+    "name": "Charms Assorted Squares",
+    "unitPrice": 35.0,
+    "_class": "com.training.posproject.Model.Item"
+  },
+  {
+    "_id": {
+      "$oid": "5c45a6773068475916a00883"
+    },
+    "code": "Cha9139946",
+    "name": "Charms Sweet Pops",
+    "unitPrice": 160.0,
+    "_class": "com.training.posproject.Model.Item"
+  },
+  {
+    "_id": {
+      "$oid": "5c45a6823068475916a00884"
+    },
+    "code": "Cin4756449",
+    "name": "Cinnamon Disks",
+    "unitPrice": 240.0,
+    "_class": "com.training.posproject.Model.Item"
+  },
+  {
+    "_id": {
+      "$oid": "5c45a68c3068475916a00885"
+    },
+    "code": "Bou0556610",
+    "name": "Bouble Lollies",
+    "unitPrice": 110.0,
+    "_class": "com.training.posproject.Model.Item"
+  },
+  {
+    "_id": {
+      "$oid": "5c45a6953068475916a00886"
+    },
+    "code": "Dub1252304",
+    "name": "Dubble Bubble Gum",
+    "unitPrice": 130.0,
+    "_class": "com.training.posproject.Model.Item"
+  },
+  {
+    "_id": {
+      "$oid": "5c45a6a43068475916a00887"
+    },
+    "code": "Fli3447222",
+    "name": "Flipsticks",
+    "unitPrice": 40.0,
+    "_class": "com.training.posproject.Model.Item"
+  },
+  {
+    "_id": {
+      "$oid": "5c45a6ac3068475916a00888"
+    },
+    "code": "Fru6332526",
+    "name": "Fruit Stripe Gum",
+    "unitPrice": 60.0,
+    "_class": "com.training.posproject.Model.Item"
+  },
+  {
+    "_id": {
+      "$oid": "5c45a6b33068475916a00889"
+    },
+    "code": "Gob5881159",
+    "name": "Gobstoppers",
+    "unitPrice": 40.0,
+    "_class": "com.training.posproject.Model.Item"
+  },
+  {
+    "_id": {
+      "$oid": "5c45a6be3068475916a0088a"
+    },
+    "code": "Hea8465970",
+    "name": "Heath",
+    "unitPrice": 100.0,
+    "_class": "com.training.posproject.Model.Item"
+  },
+  {
+    "_id": {
+      "$oid": "5c45a6c63068475916a0088b"
+    },
+    "code": "Hot5311003",
+    "name": "Hot Tamales",
+    "unitPrice": 55.0,
+    "_class": "com.training.posproject.Model.Item"
+  }
+]
