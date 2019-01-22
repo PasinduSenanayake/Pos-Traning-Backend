@@ -58,6 +58,7 @@ public class AuthController {
         Cookie authCookie = new Cookie("posAuthCookie", jwt);
         authCookie.setHttpOnly(true);
         authCookie.setPath("/api");
+        authCookie.setMaxAge(2147483647);
         response.addCookie(authCookie);
 
         return ResponseEntity.ok("Authentication Successful");
