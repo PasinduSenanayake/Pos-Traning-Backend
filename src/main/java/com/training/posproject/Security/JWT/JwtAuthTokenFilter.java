@@ -70,15 +70,15 @@ public class JwtAuthTokenFilter extends OncePerRequestFilter {
     private String getJwt(HttpServletRequest request) {
         String authHeader = null;
 
-        if(request.getCookies().length>0){
-            authHeader = Arrays.stream(request.getCookies())
-                    .filter(c -> c.getName().equals("posAuthCookie"))
-                    .findFirst()
-                    .map(Cookie::getValue)
-                    .orElse(null);
+        if(request.getCookies()!=null) {
+            if (request.getCookies().length > 0) {
+                authHeader = Arrays.stream(request.getCookies())
+                        .filter(c -> c.getName().equals("posAuthCookie"))
+                        .findFirst()
+                        .map(Cookie::getValue)
+                        .orElse(null);
+            }
         }
-
-
 
 
         return authHeader;
