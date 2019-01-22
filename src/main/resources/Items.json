@@ -43,7 +43,7 @@
     "name": "Bottle Caps",
     "unitPrice": 50.0,
     "_class": "com.training.posproject.Model.Item"
-  }
+  },
   {
     "_id": {
       "$oid": "5c45a6313068475916a0087d"
