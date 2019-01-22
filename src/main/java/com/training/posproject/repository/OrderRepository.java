@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public interface OrderRepository extends MongoRepository<Order, String> {
     ArrayList<Order> findAllByState(String State);
     Order findByUId(String uID);
+    void deleteByUId(String uID);
 
 }
 
