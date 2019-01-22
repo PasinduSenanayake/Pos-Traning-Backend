@@ -1,4 +1,4 @@
-package com.training.posproject.Security.Message.Request;
+package com.training.posproject.security.message.request;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;

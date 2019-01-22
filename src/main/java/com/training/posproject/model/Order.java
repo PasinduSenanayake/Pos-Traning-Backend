@@ -1,10 +1,9 @@
-package com.training.posproject.Model;
+package com.training.posproject.model;
 
 import org.springframework.data.annotation.Id;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 

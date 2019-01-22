@@ -1,8 +1,8 @@
-package com.training.posproject.Controllers;
+package com.training.posproject.controllers;
 
 
-import com.training.posproject.Model.Item;
-import com.training.posproject.Repository.ItemRepository;
+import com.training.posproject.model.Item;
+import com.training.posproject.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,6 +1,6 @@
-package com.training.posproject.Security.Service;
+package com.training.posproject.security.service;
 
-import com.training.posproject.Model.User;
+import com.training.posproject.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

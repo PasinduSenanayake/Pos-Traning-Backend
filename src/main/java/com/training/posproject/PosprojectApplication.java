@@ -1,20 +1,16 @@
 package com.training.posproject;
 
-import com.training.posproject.Model.Item;
-import com.training.posproject.Model.Role;
-import com.training.posproject.Model.User;
-import com.training.posproject.Repository.ItemRepository;
-import com.training.posproject.Repository.UserRepository;
-import jdk.nashorn.internal.parser.JSONParser;
+import com.training.posproject.model.Role;
+import com.training.posproject.model.User;
+import com.training.posproject.repository.ItemRepository;
+import com.training.posproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.io.FileReader;
 import java.util.HashSet;
 import java.util.Set;
 

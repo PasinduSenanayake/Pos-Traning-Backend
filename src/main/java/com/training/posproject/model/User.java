@@ -1,4 +1,4 @@
-package com.training.posproject.Model;
+package com.training.posproject.model;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,4 +1,4 @@
-package com.training.posproject.Model;
+package com.training.posproject.model;
 
 import org.springframework.data.annotation.Id;
 import javax.validation.constraints.NotBlank;

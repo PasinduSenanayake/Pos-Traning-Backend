@@ -1,4 +1,4 @@
-package com.training.posproject.Security.JWT;
+package com.training.posproject.security.jwt;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -9,7 +9,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.training.posproject.Security.Service.UserDetailsServiceImpl;
+import com.training.posproject.security.service.UserDetailsServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +51,7 @@ public class JwtAuthTokenFilter extends OncePerRequestFilter {
                 }
         }
         } catch (Exception e) {
-            logger.error("Can NOT set user authentication -> Message: {}", e);
+            logger.error("Can NOT set user authentication -> message: {}", e);
         }
 
         filterChain.doFilter(request, response);

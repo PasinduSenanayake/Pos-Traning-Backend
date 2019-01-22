@@ -1,10 +1,9 @@
-package com.training.posproject.Controllers;
+package com.training.posproject.controllers;
 
-import com.training.posproject.Model.Item;
-import com.training.posproject.Repository.ItemRepository;
-import com.training.posproject.Repository.UserRepository;
-import com.training.posproject.Security.JWT.JwtProvider;
-import com.training.posproject.Security.Message.Request.LoginForm;
+import com.training.posproject.repository.ItemRepository;
+import com.training.posproject.repository.UserRepository;
+import com.training.posproject.security.jwt.JwtProvider;
+import com.training.posproject.security.message.request.LoginForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

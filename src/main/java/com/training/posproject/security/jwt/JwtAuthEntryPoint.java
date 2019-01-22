@@ -1,4 +1,4 @@
-package com.training.posproject.Security.JWT;
+package com.training.posproject.security.jwt;
 
 import java.io.IOException;
 
@@ -23,7 +23,7 @@ public class JwtAuthEntryPoint implements AuthenticationEntryPoint {
                          AuthenticationException e)
             throws IOException, ServletException {
 
-        logger.error("Unauthorized error. Message - {}", e.getMessage());
+        logger.error("Unauthorized error. message - {}", e.getMessage());
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Error -> Unauthorized");
     }
 }

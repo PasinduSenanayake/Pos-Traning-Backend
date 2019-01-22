@@ -1,4 +1,4 @@
-package com.training.posproject.Security.Message.Response;
+package com.training.posproject.security.message.response;
 
 public class JwtResponse {
     private String token;

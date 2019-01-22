@@ -1,8 +1,8 @@
-package com.training.posproject.Security;
+package com.training.posproject.security;
 
-import com.training.posproject.Security.JWT.JwtAuthEntryPoint;
-import com.training.posproject.Security.JWT.JwtAuthTokenFilter;
-import com.training.posproject.Security.Service.UserDetailsServiceImpl;
+import com.training.posproject.security.jwt.JwtAuthEntryPoint;
+import com.training.posproject.security.jwt.JwtAuthTokenFilter;
+import com.training.posproject.security.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,11 +1,11 @@
-package com.training.posproject.Controllers;
+package com.training.posproject.controllers;
 
 
-import com.training.posproject.Model.Item;
-import com.training.posproject.Model.Order;
-import com.training.posproject.Model.OrderItem;
-import com.training.posproject.Repository.ItemRepository;
-import com.training.posproject.Repository.OrderRepository;
+import com.training.posproject.model.Item;
+import com.training.posproject.model.Order;
+import com.training.posproject.model.OrderItem;
+import com.training.posproject.repository.ItemRepository;
+import com.training.posproject.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

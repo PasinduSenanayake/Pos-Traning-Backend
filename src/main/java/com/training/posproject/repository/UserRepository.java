@@ -1,12 +1,11 @@
-package com.training.posproject.Repository;
+package com.training.posproject.repository;
 
 
 import java.util.Optional;
 
-import com.training.posproject.Model.User;
+import com.training.posproject.model.User;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.stereotype.Repository;
 
 
 @Document(collection = "user")

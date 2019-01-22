@@ -1,6 +1,6 @@
-package com.training.posproject.Security.JWT;
+package com.training.posproject.security.jwt;
 
-import com.training.posproject.Security.Service.UserPrinciple;
+import com.training.posproject.security.service.UserPrinciple;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,15 +42,15 @@ public class JwtProvider {
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
             return true;
         } catch (SignatureException e) {
-            logger.error("Invalid JWT signature -> Message: {} ", e);
+            logger.error("Invalid jwt signature -> message: {} ", e);
         } catch (MalformedJwtException e) {
-            logger.error("Invalid JWT token -> Message: {}", e);
+            logger.error("Invalid jwt token -> message: {}", e);
         } catch (ExpiredJwtException e) {
-            logger.error("Expired JWT token -> Message: {}", e);
+            logger.error("Expired jwt token -> message: {}", e);
         } catch (UnsupportedJwtException e) {
-            logger.error("Unsupported JWT token -> Message: {}", e);
+            logger.error("Unsupported jwt token -> message: {}", e);
         } catch (IllegalArgumentException e) {
-            logger.error("JWT claims string is empty -> Message: {}", e);
+            logger.error("jwt claims string is empty -> message: {}", e);
         }
 
         return false;

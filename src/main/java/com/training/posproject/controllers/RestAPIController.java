@@ -1,4 +1,4 @@
-package com.training.posproject.Controllers;
+package com.training.posproject.controllers;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;

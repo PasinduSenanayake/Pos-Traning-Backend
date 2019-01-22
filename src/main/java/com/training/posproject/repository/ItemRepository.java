@@ -1,7 +1,7 @@
-package com.training.posproject.Repository;
+package com.training.posproject.repository;
 
 
-import com.training.posproject.Model.Item;
+import com.training.posproject.model.Item;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
