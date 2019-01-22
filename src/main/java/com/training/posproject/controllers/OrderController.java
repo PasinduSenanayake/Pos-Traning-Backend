@@ -51,16 +51,19 @@ public class OrderController {
         switch (requestObject.get("updateType")){
             case "add":
                 Item newItem = itemRepository.findByCode(requestObject.get("itemId"));
-                OrderItem newOrderItem = new OrderItem(newItem.getCode(),newItem.getName(),newItem.getUnitPrice(),2);
+                OrderItem newOrderItem = new OrderItem(newItem.getCode(),newItem.getName(),newItem.getUnitPrice(),Integer.parseInt(requestObject.get("quantity")));
                 updateOrder.addItems(newOrderItem);
+                orderRepository.save(updateOrder);
                 return ResponseEntity.ok(updateOrder.getOrderItems());
 
             case "update":
                 updateOrder.updateItemByCode(requestObject.get("itemId"),Integer.parseInt(requestObject.get("quantity")));
+                orderRepository.save(updateOrder);
                 return ResponseEntity.ok(updateOrder.getOrderItems());
 
             case "delete":
                 updateOrder.deleteItemByCode(requestObject.get("itemId"));
+                orderRepository.save(updateOrder);
                 return ResponseEntity.ok(updateOrder.getOrderItems());
             default:
                 return ResponseEntity.badRequest().body("Error");
