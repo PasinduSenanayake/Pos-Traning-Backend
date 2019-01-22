@@ -1,7 +1,6 @@
 package com.training.posproject.Model;
 
 import org.springframework.data.annotation.Id;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 

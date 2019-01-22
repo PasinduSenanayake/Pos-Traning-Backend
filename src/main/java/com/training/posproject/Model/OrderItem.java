@@ -3,7 +3,7 @@ package com.training.posproject.Model;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-class OrderItem {
+public class OrderItem {
 
     @NotBlank
     @Size(min = 10, max = 10)
@@ -19,6 +19,13 @@ class OrderItem {
 
     @NotBlank
     private int quantity;
+
+    public OrderItem(String code, String name, float unitPrice, int quantity){
+        this.quantity = quantity;
+        this.unitPrice = unitPrice;
+        this.code = code;
+        this.name = name;
+    }
 
 
     public int getQuantity() {

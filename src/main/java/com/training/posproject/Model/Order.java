@@ -13,7 +13,7 @@ public class Order {
     private String id;
 
     @NotBlank
-    @Size(min = 10, max = 10)
+    @Size(min = 20, max = 20)
     private String uId;
 
     @NotBlank
@@ -21,12 +21,21 @@ public class Order {
     private String state;
 
     @NotBlank
-    private Date createDate;
+    private String createDate;
 
-    private Date completedDate;
+    @NotBlank
+    private String completedDate;
 
     @NotBlank
     private float totalAmount;
+
+    public Order(String uId, String state, String createDate){
+        this.uId = uId;
+        this.state = state;
+        this.createDate = createDate;
+        this.completedDate ="N/A";
+        this.totalAmount = 0.00f;
+    }
 
 
     private Set<OrderItem> orderItems = new HashSet<>();
@@ -39,19 +48,19 @@ public class Order {
         return state;
     }
 
-    public Date getCreateDate() {
+    public String getCreateDate() {
         return createDate;
     }
 
-    public Date getCompletedDate() {
+    public String getCompletedDate() {
         return completedDate;
     }
 
-    public void setCompletedDate(Date completedDate) {
+    public void setCompletedDate(String completedDate) {
         this.completedDate = completedDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 
@@ -83,7 +92,14 @@ public class Order {
         orderItems.add(item);
     }
 
-    public void deleteItem (OrderItem item){
-        orderItems.remove(item);
+    public void deleteItemByCode (String code){
+        orderItems.removeIf(orderItem -> orderItem.getCode().equals(code));
     }
+    public void updateItemByCode(String code, int quantity){
+        orderItems.forEach((orderItem -> {
+            if (orderItem.getCode().equals(code)) {
+                orderItem.setQuantity(quantity);
+            }}));
+    }
+
 }
