@@ -11,6 +11,7 @@ import java.util.ArrayList;
 @Document(collection = "order")
 public interface OrderRepository extends MongoRepository<Order, String> {
     ArrayList<Order> findAllByState(String State);
+    Order findByUId(String uID);
 
 }
 
