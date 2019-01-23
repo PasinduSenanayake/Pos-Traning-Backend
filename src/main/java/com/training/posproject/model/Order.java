@@ -1,5 +1,4 @@
 package com.training.posproject.model;
-
 import org.springframework.data.annotation.Id;
 
 import javax.validation.constraints.NotBlank;
@@ -38,6 +37,14 @@ public class Order {
 
 
     private Set<OrderItem> orderItems = new HashSet<>();
+
+    private void setTotal(){
+        float total = 0.00f;
+        for (OrderItem orderItem:orderItems) {
+            total+=orderItem.getQuantity()*orderItem.getUnitPrice();
+        }
+        this.totalAmount = total;
+    }
 
     public Set<OrderItem> getOrderItems() {
         return orderItems;
@@ -89,16 +96,24 @@ public class Order {
 
     public void addItems(OrderItem item){
         orderItems.add(item);
+        this.setTotal();
     }
 
     public void deleteItemByCode (String code){
         orderItems.removeIf(orderItem -> orderItem.getCode().equals(code));
+        this.setTotal();
     }
     public void updateItemByCode(String code, int quantity){
         orderItems.forEach((orderItem -> {
             if (orderItem.getCode().equals(code)) {
                 orderItem.setQuantity(quantity);
             }}));
+        this.setTotal();
     }
+
+    public void emptyItems (){
+        this.orderItems.clear();
+    }
+
 
 }

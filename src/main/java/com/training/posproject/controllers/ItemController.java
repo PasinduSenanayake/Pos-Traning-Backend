@@ -1,9 +1,9 @@
 package com.training.posproject.controllers;
 
 
-import com.training.posproject.model.Item;
 import com.training.posproject.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +19,12 @@ public class ItemController {
 
 
     @GetMapping("/all")
-    public Iterable<Item> getOpenOrders() {
-        return itemRepository.findAll();
-
+    public ResponseEntity getOpenOrders() {
+        try {
+            return ResponseEntity.ok(itemRepository.findAll());
+        }
+        catch (Exception e){
+             return ResponseEntity.status(500).body("Server Error");
+        }
     }
 }
