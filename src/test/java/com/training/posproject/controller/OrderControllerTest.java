@@ -47,11 +47,11 @@ public class OrderControllerTest {
 
     @Before
     public  void setUpAuth() {
-        User newUser1 = new User("testUser1", "testU123",passwordEncoder.encode("catWoman"));
+        User newUser = new User("testUser1", "testU123",passwordEncoder.encode("catWoman"));
         Set<Role> userRoles = new HashSet<>();
         userRoles.add(Role.ROLE_ADMIN);
-        newUser1.setRoles(userRoles);
-        userRepository.save(newUser1);
+        newUser.setRoles(userRoles);
+        userRepository.save(newUser);
     }
     @After
     public void resetDb() {
