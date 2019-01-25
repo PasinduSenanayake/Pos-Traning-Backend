@@ -1,9 +1,13 @@
 package com.training.posproject.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+
+@Document(collection = "item")
 public class Item {
     @Id
     private String id;
@@ -17,6 +21,12 @@ public class Item {
     private String name;
 
     private float unitPrice;
+
+    public Item(String code, String name, float unitPrice){
+        this.code = code;
+        this.name =name;
+        this.unitPrice = unitPrice;
+    }
 
 
     public float getUnitPrice() {
