@@ -1,7 +1,7 @@
 package com.training.posproject.controllers;
 
-
-import com.training.posproject.repository.ItemRepository;
+import com.training.posproject.service.ItemService;
+import com.training.posproject.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,14 +14,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/item")
 public class ItemController {
 
+
+    private ItemService itemService;
+
     @Autowired
-    private ItemRepository itemRepository;
+    //@Qualifier("clientService")
+    public void setItemService(ItemService itemService){
+        this.itemService=itemService;
+    }
 
 
     @GetMapping("/all")
-    public ResponseEntity getOpenOrders() {
+    public ResponseEntity getAllItems() {
         try {
-            return ResponseEntity.ok(itemRepository.findAll());
+            Pair response = itemService.getAllItems();
+            if(response.isSuccess()){
+                return ResponseEntity.ok(response.getResponse());
+            }
+            else {
+                return ResponseEntity.status(500).body("Server Error");
+            }
+
         }
         catch (Exception e){
              return ResponseEntity.status(500).body("Server Error");
