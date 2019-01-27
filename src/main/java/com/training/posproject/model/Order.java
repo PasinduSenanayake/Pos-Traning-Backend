@@ -3,8 +3,8 @@ import org.springframework.data.annotation.Id;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Order {
     @Id
@@ -36,7 +36,7 @@ public class Order {
     }
 
 
-    private Set<OrderItem> orderItems = new HashSet<>();
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     private void setTotal(){
         float total = 0.00f;
@@ -46,7 +46,7 @@ public class Order {
         this.totalAmount = total;
     }
 
-    public Set<OrderItem> getOrderItems() {
+    public List<OrderItem> getOrderItems() {
         return orderItems;
     }
 
@@ -70,7 +70,7 @@ public class Order {
         this.createDate = createDate;
     }
 
-    public void setOrderItems(Set<OrderItem> orderItems) {
+    public void setOrderItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;
     }
 

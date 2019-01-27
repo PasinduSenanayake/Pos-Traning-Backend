@@ -5,18 +5,17 @@ import com.training.posproject.model.Order;
 import com.training.posproject.model.OrderItem;
 import com.training.posproject.repository.ItemRepository;
 import com.training.posproject.repository.OrderRepository;
-import com.training.posproject.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Service
-public class OrderServiceImpl implements OrderService{
+public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderRepository orderRepository;
@@ -33,64 +32,49 @@ public class OrderServiceImpl implements OrderService{
     }
 
 
-    public Pair<Boolean,?> createOrder() {
-        try {
+    public String createOrder() {
+
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
             Date date = new Date();
             Order newOrder = new Order(generateOrderId(), "open", dateFormat.format(date));
             orderRepository.save(newOrder);
-            return new Pair<>(true,newOrder.getuId());
-        } catch (Exception e) {
-            return new Pair<>(false,null);
-
-        }
-
-
+            return newOrder.getuId();
     }
 
-    public Pair<Boolean,?> getAllOrders(String  state) {
+    public List<Order> getAllOrders(String state) {
 
-        try {
-
-            ArrayList<Order> orderList = null;
+            List<Order> orderList = null;
             switch (state) {
                 case "open":
                     orderList = orderRepository.findAllByState("open");
+                    orderList.forEach(Order::emptyItems);
                     break;
 
                 case "close":
                     orderList = orderRepository.findAllByState("close");
+                    orderList.forEach(Order::emptyItems);
                     break;
 
                 case "all":
-                    orderList = (ArrayList<Order>) orderRepository.findAll();
+                    orderList =  orderRepository.findAll();
+                    orderList.forEach(Order::emptyItems);
                     break;
+
+                default: throw new RuntimeException("unreachable");
             }
 
-            orderList.forEach(Order::emptyItems);
-
-
-            return new Pair<>(true,orderList);
-        }
-        catch (Exception e){
-            return new Pair<>(false,null);
-
-        }
+        return orderList;
 
     }
 
-    public boolean deleteOrder( String orderId) {
-        try {
+    public boolean deleteOrder(String orderId) {
+
             orderRepository.deleteByUId(orderId);
             return true;
 
-        } catch (Exception e) {
-            return false;
-        }
     }
 
-    public Pair<Boolean,?>  updateOrder(String updateType, String orderId, String itemId, String quantity ) {
-        try {
+    public  List<OrderItem> updateOrder(String updateType, String orderId, String itemId, String quantity) {
             Order updateOrder = orderRepository.findByUId(orderId);
             switch (updateType) {
                 case "add":
@@ -98,34 +82,27 @@ public class OrderServiceImpl implements OrderService{
                     OrderItem newOrderItem = new OrderItem(newItem.getCode(), newItem.getName(), newItem.getUnitPrice(), Integer.parseInt(quantity));
                     updateOrder.addItems(newOrderItem);
                     orderRepository.save(updateOrder);
-                    return new Pair<>(true,updateOrder.getOrderItems());
+                    break;
 
                 case "update":
                     updateOrder.updateItemByCode(itemId, Integer.parseInt(quantity));
                     orderRepository.save(updateOrder);
-                    return new Pair<>(true,updateOrder.getOrderItems());
+                    break;
+
 
                 case "delete":
                     updateOrder.deleteItemByCode(itemId);
                     orderRepository.save(updateOrder);
-                    return new Pair<>(true,updateOrder.getOrderItems());
+                    break;
+                default: throw new RuntimeException("unreachable");
+
 
             }
-            return new Pair<>(false,null);
-        } catch (Exception e) {
-            return new Pair<>(false,null);
-
-        }
+        return  updateOrder.getOrderItems();
     }
 
-    public Pair<Boolean,?>  getOrder( String orderId) {
+    public  Order getOrder(String orderId) {
 
-        try {
-            return new Pair<>(true,orderRepository.findByUId(orderId));
-
-        } catch (Exception e) {
-            return new Pair<>(false,null);
-
-        }
+            return  orderRepository.findByUId(orderId);
     }
 }

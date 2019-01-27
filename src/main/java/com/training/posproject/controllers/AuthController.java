@@ -1,16 +1,9 @@
 package com.training.posproject.controllers;
 
-import com.training.posproject.repository.ItemRepository;
-import com.training.posproject.repository.UserRepository;
-import com.training.posproject.security.jwt.JwtProvider;
 import com.training.posproject.security.message.request.LoginForm;
+import com.training.posproject.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
@@ -22,51 +15,42 @@ import javax.validation.Valid;
 @RequestMapping("/api/auth")
 public class AuthController {
 
-    @Autowired
-    AuthenticationManager authenticationManager;
+
+    private AuthService authService;
 
     @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    ItemRepository itemRepository;
-
-
-    @Autowired
-    PasswordEncoder encoder;
-
-    @Autowired
-    JwtProvider jwtProvider;
+    public void setAuthService(AuthService authService){
+        this.authService=authService;
+    }
 
 
     @PostMapping("/signIn")
     @ResponseBody
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest, HttpServletResponse response) {
+    public ResponseEntity authenticateUser(@Valid @RequestBody LoginForm loginRequest, HttpServletResponse responseObject) {
 
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsername(),
-                        loginRequest.getPassword()
-                )
-        );
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+        try {
+            String token= authService.authenticateUser(loginRequest);
 
-        String jwt = jwtProvider.generateJwtToken(authentication);
+                Cookie authCookie = new Cookie("posAuthCookie", token);
+                authCookie.setHttpOnly(true);
+                authCookie.setPath("/api");
+                authCookie.setMaxAge(2147483647);
+                responseObject.addCookie(authCookie);
+                return ResponseEntity.ok("Authentication Successful");
 
-        Cookie authCookie = new Cookie("posAuthCookie", jwt);
-        authCookie.setHttpOnly(true);
-        authCookie.setPath("/api");
-        authCookie.setMaxAge(2147483647);
-        response.addCookie(authCookie);
 
-        return ResponseEntity.ok("Authentication Successful");
+        }
+        catch (Exception e){
+            return ResponseEntity.status(500).build();
+        }
+
     }
 
 
     @PostMapping("/signOut")
     @ResponseBody
-    public ResponseEntity<?> signOutUser( HttpServletResponse response) {
+    public ResponseEntity signOutUser( HttpServletResponse response) {
         Cookie authCookie = new Cookie("posAuthCookie", null);
         authCookie.setHttpOnly(true);
         authCookie.setPath("/api");
@@ -74,11 +58,4 @@ public class AuthController {
         return ResponseEntity.ok("SignOut Successful");
     }
 
-//    @PostMapping("/addItems")
-//    @ResponseBody
-//    public ResponseEntity<?> addItems(@Valid @RequestBody Item item, HttpServletResponse response) {
-//        itemRepository.save(item);
-//        return ResponseEntity.ok("SignOut Successful");
-//
-//    }
 }

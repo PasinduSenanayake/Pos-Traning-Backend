@@ -38,7 +38,7 @@ public class OrderRepositoryTest {
     }
     @Test
     public void findAllByStateTest(){
-        Assert.assertEquals(orderRepository.findAllByState("open").size(),1);
+        Assert.assertEquals(1,orderRepository.findAllByState("open").size());
 
     }
     @Test

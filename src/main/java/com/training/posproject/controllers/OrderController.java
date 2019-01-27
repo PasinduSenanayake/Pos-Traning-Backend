@@ -1,7 +1,6 @@
 package com.training.posproject.controllers;
 
 import com.training.posproject.service.OrderService;
-import com.training.posproject.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,21 +12,26 @@ import java.util.*;
 public class OrderController {
 
 
-    @Autowired
+
     private OrderService orderService;
+
+    @Autowired
+    public void setOrderService(OrderService orderService){
+        this.orderService=orderService;
+    }
+
 
     @PostMapping("/create")
     public ResponseEntity createOrder() {
 
+
+
         try {
-            Pair response = orderService.createOrder();
-            if(response.isSuccess()){
-                return ResponseEntity.ok(response.getResponse());
-            } else {
-                return ResponseEntity.status(500).body("Server Error");
-            }
+
+            String newOrderId= orderService.createOrder();
+            return ResponseEntity.ok(newOrderId);
         } catch (Exception e) {
-            return ResponseEntity.status(500).body("Server Error");
+            return ResponseEntity.status(500).build();
         }
 
 
@@ -35,24 +39,18 @@ public class OrderController {
 
     @PutMapping("/update")
     @ResponseBody
-    public ResponseEntity<?> updateOrder(@RequestBody Map<String, String> requestObject) {
+    public ResponseEntity updateOrder(@RequestBody Map<String, String> requestObject) {
 
-
+        String updateType= requestObject.get("updateType");
         try {
-            Pair response ;
-            if (requestObject.get("updateType").equals("delete")) {
-                response =  orderService.updateOrder(requestObject.get("updateType"), requestObject.get("orderId"), requestObject.get("itemId"), "0");
+            if (updateType.equals("delete")) {
+                return ResponseEntity.ok(orderService.updateOrder(updateType, requestObject.get("orderId"), requestObject.get("itemId"), "0"));
             } else {
-                response = orderService.updateOrder(requestObject.get("updateType"), requestObject.get("orderId"), requestObject.get("itemId"), requestObject.get("quantity"));
+                return ResponseEntity.ok(orderService.updateOrder(updateType, requestObject.get("orderId"), requestObject.get("itemId"), requestObject.get("quantity")));
 
-            }
-            if(response.isSuccess()){
-                return ResponseEntity.ok(response.getResponse());
-            } else {
-                return ResponseEntity.status(500).body("Server Error");
             }
         } catch (Exception e) {
-            return ResponseEntity.status(500).body("Server Error");
+            return ResponseEntity.status(500).build();
         }
 
     }
@@ -61,14 +59,11 @@ public class OrderController {
     public ResponseEntity getOrder(@RequestParam("orderId") String orderId) {
 
         try {
-            Pair response = orderService.getOrder(orderId);
-            if(response.isSuccess()){
-                return ResponseEntity.ok(response.getResponse());
-            } else {
-                return ResponseEntity.status(500).body("Server Error");
-            }
+
+                return ResponseEntity.ok(orderService.getOrder(orderId));
+
         } catch (Exception e) {
-            return ResponseEntity.status(500).body("Server Error");
+            return ResponseEntity.status(500).build();
         }
 
     }
@@ -76,13 +71,11 @@ public class OrderController {
     @DeleteMapping("/deleteOrder")
     public ResponseEntity deleteOrder(@RequestParam("orderId") String orderId) {
         try {
-            if (orderService.deleteOrder(orderId)) {
-                return ResponseEntity.ok("deleted Successfully");
-            } else {
-                return ResponseEntity.status(500).body("Server Error");
-            }
+            orderService.deleteOrder(orderId);
+            return ResponseEntity.ok("deleted Successfully");
+
         } catch (Exception e) {
-            return ResponseEntity.status(500).body("Server Error");
+            return ResponseEntity.status(500).build();
         }
     }
 
@@ -90,14 +83,11 @@ public class OrderController {
     public ResponseEntity getAllOpenOrders() {
 
         try {
-            Pair response = orderService.getAllOrders("open");
-            if (response.isSuccess()) {
-                return ResponseEntity.ok(response.getResponse());
-            } else {
-                return ResponseEntity.status(500).body("Server Error");
-            }
+
+                return ResponseEntity.ok(orderService.getAllOrders("open"));
+
         } catch (Exception e) {
-            return ResponseEntity.status(500).body("Server Error");
+            return ResponseEntity.status(500).build();
         }
 
     }

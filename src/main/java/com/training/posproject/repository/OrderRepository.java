@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 @Document(collection = "order")
 public interface OrderRepository extends MongoRepository<Order, String> {
-    ArrayList<Order> findAllByState(String State);
+    ArrayList<Order> findAllByState(String state);
     Order findByUId(String uID);
     void deleteByUId(String uID);
 

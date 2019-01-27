@@ -43,10 +43,8 @@ public class ItemServiceImplTest {
     }
 
     @Test
-    @SuppressWarnings("unchecked")
     public void getAllItemsTest() {
-        Assert.assertTrue(itemService.getAllItems().isSuccess());
-        ArrayList<Item> itemSet = (ArrayList<Item>) itemService.getAllItems().getResponse();
-        Assert.assertEquals(itemSet.size(),1);
+        List<Item> itemSet = itemService.getAllItems();
+        Assert.assertEquals(1,itemSet.size());
     }
 }
